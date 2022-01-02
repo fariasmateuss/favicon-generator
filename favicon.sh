@@ -1,12 +1,15 @@
 #!/bin/bash
 SRC_IMAGE=$1
 
-# colors
 CYAN='\033[0;36m'
 RED='\033[0;31m'
 COLORRESET='\033[0m'
 
-// script to generate favicon.ico
+if ! command -v convert >/dev/null 2>&1; then
+    echo -e "${RED}ImageMagick is not installed.${COLORRESET}"
+    exit 1
+fi
+
 if [ -z $SRC_IMAGE ]; then
     echo -ne "${RED}You must supply a source image as the argument to this command. \n${COLORRESET}"
     exit
